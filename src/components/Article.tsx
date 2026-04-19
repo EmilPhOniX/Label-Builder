@@ -1,19 +1,17 @@
-import { useState } from "react"
-import { updateSheet } from "../updateSheet"
+import type { ArticleData } from "../dataStructure"
 
-export default function Article({ id, onDelete }: { id: number; onDelete: () => void }) {
-    const [prix, setPrix] = useState("")
-    const [remise, setRemise] = useState("")
-
-    const entryPrice = parseFloat(prix)
+export default function Article({ article, onDelete, onUpdate }: { article: ArticleData; onDelete: () => void; onUpdate: (updated: ArticleData) => void }) {
+    const entryPrice = parseFloat(article.prix)
     const price = entryPrice * 1.4
-    const discount = parseFloat(remise)
-    const discounted = isNaN(price)
-        ? 0
-        : price - price * (isNaN(discount) ? 0 : discount) / 100
+    const discount = parseFloat(article.remise)
+    const discounted = isNaN(price) ? 0 : price - price * (isNaN(discount) ? 0 : discount) / 100
+
+    const handleChange = (field: keyof ArticleData, value: string) => {
+        onUpdate({ ...article, [field]: value })
+    }
 
     return (
-        <div id={`${id}`} className="flex flex-col sm:flex-row gap-2">
+        <div id={`article-${article.id}`} className="flex flex-col sm:flex-row gap-2">
             <button
                 type="button"
                 onClick={onDelete}
@@ -24,8 +22,8 @@ export default function Article({ id, onDelete }: { id: number; onDelete: () => 
             <div className="flex flex-col align-middle gap-1 justify-center text-center">
                 <label className="text-sm">Prix</label>
                 <input
-                    value={prix}
-                    onChange={(e) => setPrix(e.target.value)}
+                    value={article.prix}
+                    onChange={(e) => handleChange('prix', e.target.value)}
                     type="text"
                     className="text-sm w-16"
                 />
@@ -33,8 +31,8 @@ export default function Article({ id, onDelete }: { id: number; onDelete: () => 
             <div className="flex flex-col align-middle gap-1 justify-center text-center">
                 <label className="text-sm">Remise %</label>
                 <input
-                    value={remise}
-                    onChange={(e) => setRemise(e.target.value)}
+                    value={article.remise}
+                    onChange={(e) => handleChange('remise', e.target.value)}
                     type="text"
                     className="text-sm w-16"
                 />
@@ -50,7 +48,12 @@ export default function Article({ id, onDelete }: { id: number; onDelete: () => 
             </div>
             <div className="flex flex-col align-middle gap-1 justify-center text-center">
                 <label className="text-sm">Quantité</label>
-                <input onChange={() => updateSheet()} type="text" className="text-sm w-16" />
+                <input
+                    value={article.quantity}
+                    onChange={(e) => handleChange('quantity', e.target.value)}
+                    type="text"
+                    className="text-sm w-16"
+                />
             </div>
         </div>
     )
