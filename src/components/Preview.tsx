@@ -1,5 +1,4 @@
 import Label from "./Label"
-
 import type { ArticleData, ArticleLabelData } from "../dataStructure"
 
 export default function Preview({ articles }: { articles: ArticleData[] }) {
@@ -46,8 +45,8 @@ export default function Preview({ articles }: { articles: ArticleData[] }) {
 
             <div className="print-wrapper">
                 <div className="preview-sheet bg-red-50">
-                    <table className="fiche w-full h-full border-collapse" style={{ minHeight: '100%' }}>
-                        <tbody>
+                    <table className="fiche flex items-center justify-center">
+                        <tbody className="mt-10">
                             {Array.from({ length: rows }, (_, rowIndex) => (
                                 <tr key={rowIndex}>
                                     {Array.from({ length: cols }, (_, colIndex) => {
@@ -56,8 +55,7 @@ export default function Preview({ articles }: { articles: ArticleData[] }) {
                                         return (
                                             <td
                                                 key={colIndex}
-                                                className="p-1 align-top"
-                                                style={{ width: '33.333%', height: `${100 / rows}%` }}
+                                                className="p-1 align-top bg-yellow-400 rounded-3xl w-60"
                                             >
                                                 <Label data={data} />
                                             </td>
