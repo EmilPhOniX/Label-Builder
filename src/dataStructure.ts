@@ -3,10 +3,12 @@ export type ArticleData = {
     prix: string
     remise: string
     quantity: string
+    decalage: number
 }
 
 export type ArticleLabelData = {
     prix: string
     remise: string
     discounted: string
+    isEmpty?: boolean
 }

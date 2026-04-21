@@ -2,16 +2,16 @@ import type { ArticleData } from "../dataStructure"
 
 export default function Article({ article, onDelete, onUpdate }: { article: ArticleData; onDelete: () => void; onUpdate: (updated: ArticleData) => void }) {
     const entryPrice = parseFloat(article.prix)
-    const price = entryPrice * 1.4
+    const price = isNaN(entryPrice) ? 0 : entryPrice * 1.4
     const discount = parseFloat(article.remise)
-    const discounted = isNaN(price) ? 0 : price - price * (isNaN(discount) ? 0 : discount) / 100
+    const discounted = price - price * (isNaN(discount) ? 0 : discount) / 100
 
     const handleChange = (field: keyof ArticleData, value: string) => {
         onUpdate({ ...article, [field]: value })
     }
 
     return (
-        <div id={`article-${article.id}`} className="flex flex-col sm:flex-row gap-2">
+        <div id={`article-${article.id}`} className="flex flex-col sm:flex-row gap-2 ">
             <button
                 type="button"
                 onClick={onDelete}

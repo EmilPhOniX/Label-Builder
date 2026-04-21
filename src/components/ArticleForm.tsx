@@ -4,7 +4,7 @@ import type { ArticleData } from "../dataStructure";
 export default function ArticleForm({ articles, setArticles }: { articles: ArticleData[]; setArticles: (articles: ArticleData[]) => void }) {
 
     function addArticle() {
-        setArticles([...articles, { id: articles.length + 1, prix: '', remise: '', quantity: '' }])
+        setArticles([...articles, { id: articles.length + 1, prix: '', remise: '', quantity: '', decalage: 0 }])
     }
 
     function deleteArticle(id: number) {
@@ -16,7 +16,7 @@ export default function ArticleForm({ articles, setArticles }: { articles: Artic
     }
 
     return (
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 m-5">
             <button
                 type="button"
                 onClick={addArticle}
@@ -26,8 +26,7 @@ export default function ArticleForm({ articles, setArticles }: { articles: Artic
             </button>
             <form
                 id="page-form"
-                className="border"
-                action=""
+                className="border w-84 min-h-14 p-2"
             >
                 {articles.map((article) => (
                     <Article key={article.id} article={article} onDelete={() => deleteArticle(article.id)} onUpdate={(updated) => updateArticle(article.id, updated)} />

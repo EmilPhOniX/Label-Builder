@@ -1,12 +1,19 @@
 import Label from "./Label"
 import type { ArticleData, ArticleLabelData } from "../dataStructure"
 
-export default function Preview({ articles }: { articles: ArticleData[] }) {
+export default function Preview({ articles, decalage }: { articles: ArticleData[], decalage: number }) {
     const allLabels: ArticleLabelData[][] = []
+
+    for (let i = 0; i < decalage * 3; i++) {
+        if (allLabels.length === 0 || allLabels[allLabels.length - 1].length === 3) {
+            allLabels.push([])
+        }
+        allLabels[allLabels.length - 1].push({ prix: '', remise: '', discounted: '', isEmpty: true })
+    }
 
     for (const article of articles) {
         const entryPrice = parseFloat(article.prix)
-        const price = entryPrice * 1.4
+        const price = isNaN(entryPrice) ? 0 : entryPrice * 1.4
         const discount = parseFloat(article.remise)
         const discounted = isNaN(price) ? 0 : price - price * (isNaN(discount) ? 0 : discount) / 100
         const qty = parseInt(article.quantity) || 0
@@ -32,7 +39,7 @@ export default function Preview({ articles }: { articles: ArticleData[] }) {
     }
 
     return (
-        <div className="preview-root">
+        <div className="preview-root m-5">
             <div className="mb-4 no-print">
                 <button
                     type="button"
