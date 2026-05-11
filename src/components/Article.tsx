@@ -2,7 +2,7 @@ import type { ArticleData } from "../dataStructure"
 
 export default function Article({ article, onDelete, onUpdate }: { article: ArticleData; onDelete: () => void; onUpdate: (updated: ArticleData) => void }) {
     const entryPrice = parseFloat(article.prix)
-    const price = isNaN(entryPrice) ? 0 : entryPrice * 1.4
+    const price = isNaN(entryPrice) ? 0 : entryPrice * 1.45
     const discount = parseFloat(article.remise)
     const discounted = price - price * (isNaN(discount) ? 0 : discount) / 100
 
