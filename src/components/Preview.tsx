@@ -53,7 +53,7 @@ export default function Preview({ articles, decalage }: { articles: ArticleData[
             <div className="print-wrapper">
                 <div className="preview-sheet bg-red-50">
                     <table className="fiche flex items-center justify-center">
-                        <tbody className="mt-10">
+                        <tbody className="mt-12">
                             {Array.from({ length: rows }, (_, rowIndex) => (
                                 <tr key={rowIndex}>
                                     {Array.from({ length: cols }, (_, colIndex) => {
