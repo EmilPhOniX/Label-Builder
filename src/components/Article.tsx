@@ -15,12 +15,12 @@ export default function Article({ article, onDelete, onUpdate }: { article: Arti
             <button
                 type="button"
                 onClick={onDelete}
-                className="self-end rounded-lg bg-red-800 px-3 h-6 text-white justify-end text-sm"
+                className="self-end rounded-lg bg-[#004201] px-3 h-6 text-white justify-end text-sm cursor-pointer"
             >
                 -
             </button>
             <div className="flex flex-col align-middle gap-1 justify-center text-center">
-                <label className="text-sm">Prix</label>
+                <label className="text-xs">Prix</label>
                 <input
                     value={article.prix}
                     onChange={(e) => handleChange('prix', e.target.value)}
@@ -29,7 +29,7 @@ export default function Article({ article, onDelete, onUpdate }: { article: Arti
                 />
             </div>
             <div className="flex flex-col align-middle gap-1 justify-center text-center">
-                <label className="text-sm">Remise %</label>
+                <label className="text-xs">Remise %</label>
                 <input
                     value={article.remise}
                     onChange={(e) => handleChange('remise', e.target.value)}
@@ -38,7 +38,7 @@ export default function Article({ article, onDelete, onUpdate }: { article: Arti
                 />
             </div>
             <div className="flex flex-col align-middle gap-1 justify-center text-center">
-                <label className="text-sm">Prix Remis</label>
+                <label className="text-xs">Prix Remis</label>
                 <input
                     value={discounted ? discounted.toFixed(2) : 0}
                     type="text"
@@ -47,7 +47,7 @@ export default function Article({ article, onDelete, onUpdate }: { article: Arti
                 />
             </div>
             <div className="flex flex-col align-middle gap-1 justify-center text-center">
-                <label className="text-sm">Quantité</label>
+                <label className="text-xs">Quantité</label>
                 <input
                     value={article.quantity}
                     onChange={(e) => handleChange('quantity', e.target.value)}

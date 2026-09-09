@@ -21,7 +21,7 @@ export default function ArticleForm({ articles, setArticles }: { articles: Artic
                 type="button"
                 onClick={addArticle}
                 id="addArticle"
-                className="rounded-2xl bg-red-500 px-5 text-center text-white align-middle max-w-max">
+                className="rounded-2xl bg-[#009402] px-5 text-center text-white align-middle max-w-max cursor-pointer">
                 + Ajouter un {articles.length + 1}{articles.length ? "ème" : "er"} article
             </button>
             <form

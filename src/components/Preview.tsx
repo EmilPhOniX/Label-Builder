@@ -43,7 +43,7 @@ export default function Preview({ articles, decalage }: { articles: ArticleData[
             <div className="mb-4 no-print">
                 <button
                     type="button"
-                    className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                    className="rounded bg-[#00BD03] px-4 py-2 text-white hover:bg-[#009402] cursor-pointer"
                     onClick={handlePrint}
                 >
                     Imprimer la preview
@@ -51,7 +51,7 @@ export default function Preview({ articles, decalage }: { articles: ArticleData[
             </div>
 
             <div className="print-wrapper">
-                <div className="preview-sheet bg-red-50">
+                <div className="preview-sheet bg-green-100">
                     <table className="fiche flex items-center justify-center">
                         <tbody className="mt-12">
                             {Array.from({ length: rows }, (_, rowIndex) => (
