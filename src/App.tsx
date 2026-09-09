@@ -1,20 +1,18 @@
-import { useState } from "react"
-import ArticleForm from "./components/ArticleForm"
-import Preview from "./components/Preview"
-import Decalage from "./components/Decalage"
-import type { ArticleData } from "./dataStructure"
+import { useState } from "react";
+import Header from "./components/Header.tsx";
+import LabelBuilder from "./pages/LabelBuilder.tsx";
+import NouveauteEditor from "./pages/NouveauteEditor.tsx";
 
 export default function App() {
-  const [articles, setArticles] = useState<ArticleData[]>([{ id: 1, prix: '', remise: '', quantity: '', decalage: 0 }])
-  const [decalage, setDecalage] = useState<number>(0)
+  const [activeView, setActiveView] = useState("labelBuilder");
 
   return (
-    <div className="flex">
-      <div>
-        <ArticleForm articles={articles} setArticles={setArticles} />
-        <Decalage decalage={decalage} setDecalage={setDecalage} />
+    <div>
+      <Header activeView={activeView} setActiveView={setActiveView} />
+      <div className="flex">
+        {activeView === "labelBuilder" && <LabelBuilder />}
+        {activeView === "nouveauteEditor" && <NouveauteEditor />}
       </div>
-      <Preview articles={articles} decalage={decalage} />
     </div>
-  )
+  );
 }
